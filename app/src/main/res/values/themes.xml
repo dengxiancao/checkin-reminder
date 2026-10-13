@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 职责：Material3 主题定义，供 Activity 与 Compose 共用（Compose 侧见 ui/theme/Theme.kt） -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 应用主题：无 ActionBar，由 Compose 自行绘制顶部栏 -->
+    <style name="Theme.CheckinReminder" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/app_background</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- Android 15 起强制 edge-to-edge，这里提前适配避免内容被系统栏遮挡 -->
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">shortEdges</item>
+    </style>
+
+    <!-- 地图选点页专用主题：地图需要硬件加速 -->
+    <style name="Theme.CheckinReminder.MapPicker" parent="Theme.CheckinReminder">
+        <item name="android:windowBackground">@color/app_background</item>
+    </style>
+
+</resources>

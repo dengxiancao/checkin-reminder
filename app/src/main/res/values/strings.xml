@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 职责：字符串资源，集中管理界面文案与通知文案 -->
+<resources>
+    <string name="app_name">定位打卡</string>
+
+    <!-- ==================== 通知渠道 ==================== -->
+    <string name="channel_check_in_name">打卡提醒</string>
+    <string name="channel_check_in_desc">进入或离开打卡范围时发出高优先级提醒，锁屏可见</string>
+    <string name="channel_service_name">后台定位服务</string>
+    <string name="channel_service_desc">保持后台定位以持续判断是否接近打卡点</string>
+
+    <!-- ==================== 前台服务通知 ==================== -->
+    <string name="notification_service_title">打卡定位提醒运行中</string>
+    <string name="notification_service_starting">正在启动定位…</string>
+    <string name="notification_service_refreshing">正在重新注册围栏…</string>
+    <string name="notification_service_running">正在监控 %1$d 个打卡点 · 定位间隔 %2$d 秒</string>
+    <string name="notification_service_locating_error">定位异常（错误码 %1$d），请检查定位权限与开关</string>
+
+    <!-- ==================== 打卡提醒通知 ==================== -->
+    <string name="notify_enter_title">已进入「%1$s」打卡范围</string>
+    <string name="notify_enter_text">距打卡点约 %1$d 米（范围 %2$d 米），请及时打卡</string>
+    <!-- Notifier 使用的需求指定文案 -->
+    <string name="notify_enter_text_new">已进入打卡范围（距离 %1$d 米），请打卡</string>
+    <string name="notify_leave_title">已离开「%1$s」打卡范围</string>
+    <string name="notify_leave_text">距打卡点约 %1$d 米（范围 %2$d 米），请确认是否已打卡</string>
+    <string name="notify_leave_text_new">已离开打卡范围，别忘打卡</string>
+    <string name="notify_checkin_success_title">打卡成功</string>
+    <string name="notify_checkin_success_text">已完成「%1$s」打卡，记录已保存</string>
+
+    <!-- ==================== 打卡确认页 ==================== -->
+    <string name="confirm_title">打卡确认</string>
+    <string name="confirm_enter_subtitle">你已进入该打卡点范围</string>
+    <string name="confirm_leave_subtitle">你已离开该打卡点范围</string>
+    <string name="confirm_point_label">打卡点</string>
+    <string name="confirm_radius_label">打卡范围</string>
+    <string name="confirm_radius_value">%1$d 米</string>
+    <string name="confirm_distance_label">当前距离</string>
+    <string name="confirm_distance_value">%1$d 米</string>
+    <string name="confirm_distance_unknown">定位中…</string>
+    <string name="confirm_locating">正在获取当前位置…</string>
+    <string name="confirm_location_failed">无法获取当前位置，打卡未完成</string>
+    <string name="confirm_checkin_button">立即打卡</string>
+    <string name="confirm_checking_in">正在打卡…</string>
+    <string name="confirm_success_title">打卡成功</string>
+    <string name="confirm_success_text">已于 %1$s 完成「%2$s」打卡</string>
+    <string name="confirm_success_distance">打卡位置距打卡点约 %1$d 米</string>
+    <string name="confirm_close">关闭</string>
+    <string name="confirm_point_deleted">该打卡点已被删除，无法打卡</string>
+    <string name="confirm_permission_hint">未授予通知权限，将无法收到打卡提醒。请在系统设置中开启通知。</string>
+    <string name="confirm_permission_button">打开通知设置</string>
+
+    <!-- ==================== 底部导航 ==================== -->
+    <string name="tab_points">打卡点</string>
+    <string name="tab_records">打卡记录</string>
+    <string name="tab_settings">设置</string>
+    <string name="action_back">返回</string>
+
+    <!-- ==================== 通用操作 ==================== -->
+    <string name="action_delete">删除</string>
+    <string name="action_edit">编辑</string>
+    <string name="action_add">添加打卡点</string>
+    <string name="action_save">保存</string>
+    <string name="action_cancel">取消</string>
+
+    <!-- ==================== 打卡点列表页 ==================== -->
+    <string name="point_list_title">我的打卡点</string>
+    <string name="point_list_empty">还没有打卡点\n点击右下角按钮，在地图上选点添加</string>
+    <string name="monitoring_on">后台监测中，共 %1$d 个启用的打卡点</string>
+    <string name="monitoring_off">后台监测未开启</string>
+    <string name="home_start_monitoring">开始监测</string>
+    <string name="home_stop_monitoring">停止监测</string>
+    <string name="point_radius_format">半径 %1$d 米</string>
+    <string name="point_enabled">已启用</string>
+    <string name="point_disabled">已停用</string>
+    <string name="point_delete_confirm">确定删除「%1$s」吗？该打卡点的所有打卡记录也会一并删除。</string>
+
+    <!-- ==================== 围栏实时状态 ==================== -->
+    <string name="fence_state_inside">已进入打卡范围</string>
+    <string name="fence_state_near">接近中</string>
+    <string name="fence_state_left">刚离开</string>
+    <string name="fence_state_outside">在范围外</string>
+    <string name="fence_state_unknown">等待定位判定</string>
+
+    <!-- ==================== 新增/编辑打卡点 ==================== -->
+    <string name="point_add_title">新增打卡点</string>
+    <string name="point_edit_title">编辑打卡点</string>
+    <string name="point_name_label">打卡点名称</string>
+    <string name="point_name_placeholder">例如：公司、家门口</string>
+    <string name="point_map_hint">点击地图任意位置选点，再选择打卡范围半径</string>
+    <string name="point_location_empty">尚未选点，请点击地图选择位置</string>
+    <string name="point_location_format" formatted="false">纬度 %.6f，经度 %.6f</string>
+    <string name="point_radius_label">打卡范围半径：%1$d 米</string>
+    <string name="point_radius_hint">范围越小越灵敏也越容易误报，建议 100~300 米</string>
+    <string name="point_notify_enter">进入范围时提醒</string>
+    <string name="point_notify_exit">离开范围时提醒</string>
+    <string name="point_locate_me">定位到当前位置</string>
+    <string name="point_locating">定位中…</string>
+
+    <!-- ==================== 打卡记录页 ==================== -->
+    <string name="records_title">打卡记录</string>
+    <string name="records_empty">暂无打卡记录\n进入打卡范围后会生成记录</string>
+    <string name="records_enter">进入</string>
+    <string name="records_exit">离开</string>
+    <string name="records_clear">清空记录</string>
+    <string name="records_distance_format">距离 %1$d 米</string>
+    <string name="records_coordinate_format" formatted="false">坐标 %.6f, %.6f</string>
+    <string name="records_source_manual">手动打卡</string>
+    <string name="records_source_auto_confirmed">提醒后确认</string>
+    <string name="records_source_fence_exit">离开记录</string>
+
+    <!-- ==================== 设置页 ==================== -->
+    <string name="settings_title">设置</string>
+    <string name="settings_permission_section">权限状态</string>
+    <string name="settings_permission_hint">后台打卡提醒需要「始终允许」定位与通知权限，缺失时无法在锁屏提醒。</string>
+    <string name="settings_data_section">数据概览</string>
+    <string name="settings_point_count">打卡点总数</string>
+    <string name="settings_enabled_count">启用中</string>
+    <string name="settings_record_count">打卡记录数</string>
+    <string name="settings_monitoring_state">后台监测</string>
+    <string name="settings_state_on">已开启</string>
+    <string name="settings_state_off">已关闭</string>
+    <string name="settings_debug_section">定位调试</string>
+    <string name="settings_debug_desc">查看实时坐标、精度与定位来源，验证连续定位是否按间隔回调。</string>
+    <string name="settings_open_debug">打开定位调试页</string>
+    <string name="settings_about_section">关于</string>
+    <string name="settings_version">版本</string>
+    <string name="settings_map_sdk">地图/定位 SDK</string>
+    <string name="settings_map_sdk_value">高德地图 + 高德定位</string>
+
+    <!-- ==================== 设置页：监控 / 提醒方式 / 电池 / 自检 / ROM 引导 ==================== -->
+    <string name="settings_monitor_section">后台监控</string>
+    <string name="settings_monitor_switch">开启后台监控</string>
+    <string name="settings_monitor_desc_on">正在监控 %1$d 个打卡点，定位间隔 %2$d 秒</string>
+    <string name="settings_monitor_desc_off">关闭后将不会收到进入/离开打卡范围的提醒</string>
+    <string name="settings_monitor_need_permission">请先授予定位与通知权限再开启监控</string>
+
+    <string name="settings_notify_section">提醒方式</string>
+    <string name="settings_notify_sound">提示音</string>
+    <string name="settings_notify_sound_desc">进入/离开打卡范围时播放提示音</string>
+    <string name="settings_notify_vibrate">震动</string>
+    <string name="settings_notify_vibrate_desc">进入/离开打卡范围时震动提醒</string>
+    <string name="settings_notify_fullscreen">全屏提醒</string>
+    <string name="settings_notify_fullscreen_desc">锁屏时直接弹出打卡确认页，避免错过</string>
+    <string name="settings_notify_fullscreen_needs_permission">Android 14 起需在系统设置中单独授予「全屏提醒」权限，否则锁屏只会显示横幅通知</string>
+    <string name="settings_notify_fullscreen_grant">去授权</string>
+
+    <string name="settings_battery_section">电池优化</string>
+    <string name="settings_battery_status_optimized">已优化（可能被限制后台）</string>
+    <string name="settings_battery_status_ignored">已设为不优化（推荐状态）</string>
+    <string name="settings_battery_power_save_on">系统当前处于省电模式，后台限制会加强</string>
+    <string name="settings_battery_desc">系统进入 Doze（打盹）后会限制后台定位，导致锁屏时收不到提醒。建议把本应用设为「不优化」。</string>
+    <string name="settings_battery_action">设置不优化</string>
+    <string name="settings_battery_done">已是不优化状态</string>
+
+    <string name="settings_selfcheck_section">自检</string>
+    <string name="settings_selfcheck_action">开始自检</string>
+    <string name="settings_selfcheck_running">正在自检…</string>
+    <string name="settings_selfcheck_summary">%1$d 项通过 · %2$d 项未通过</string>
+    <string name="settings_selfcheck_item_ok">通过</string>
+    <string name="settings_selfcheck_item_fail">未通过</string>
+
+    <string name="settings_rom_section">后台权限设置引导</string>
+    <string name="settings_rom_detected">检测到你的设备：%1$s</string>
+    <string name="settings_rom_desc">国产系统会主动清理后台，需要在系统设置里为本应用开启「自启动」并允许后台运行，否则锁屏或清理后台后将收不到提醒。</string>
+    <string name="settings_rom_action">查看设置步骤</string>
+
+    <!-- ==================== 后台权限引导页 ==================== -->
+    <string name="guide_title">后台权限设置引导</string>
+    <string name="guide_vendor_detected">当前设备：%1$s</string>
+    <string name="guide_vendor_manual_switch">若当前机型识别有误，可手动切换：</string>
+    <string name="guide_common_title">通用步骤（所有机型都适用）</string>
+    <string name="guide_open_autostart">打开自启动设置</string>
+    <string name="guide_open_battery">打开电池优化设置</string>
+    <string name="guide_open_appinfo">打开应用信息页</string>
+    <string name="guide_jump_unreliable">提示：厂商设置页属于私有页面，部分机型可能无法直接跳转；若跳转后不是目标页面，请按上面列出的路径手动查找。</string>
+    <string name="guide_verify_title">如何验证已生效</string>
+    <string name="guide_verify_desc">设置完成后回到设置页点击「开始自检」，确认「电池优化」与「前台服务」两项通过；再锁屏等待 5 分钟，观察是否仍能收到提醒。</string>
+
+    <!-- ==================== 自检项 ==================== -->
+    <string name="check_service">前台服务运行中</string>
+    <string name="check_service_hint">服务未运行：请打开上方「开启后台监控」开关</string>
+    <string name="check_location">定位权限（含后台）</string>
+    <string name="check_location_hint">缺少定位权限：请在系统设置中授予「始终允许」</string>
+    <string name="check_notification">通知权限</string>
+    <string name="check_notification_hint">未授权通知：请在系统设置中开启通知，否则收不到提醒</string>
+    <string name="check_battery">电池优化已关闭</string>
+    <string name="check_battery_hint">仍被电池优化：请点击上方「设置不优化」</string>
+    <string name="check_fullscreen">全屏提醒可用（锁屏直接弹出）</string>
+    <string name="check_fullscreen_hint">Android 14+ 未授予「全屏提醒」权限：锁屏只会显示横幅通知，点击本项引导去系统设置授权</string>
+    <string name="check_alarm">精确定时权限</string>
+    <string name="check_alarm_ok">已授权（自恢复更准时）</string>
+    <string name="check_alarm_hint">未授权精确定时（Android 12+）：自恢复会变慢，但不影响提醒</string>
+    <string name="check_points">存在启用中的打卡点</string>
+    <string name="check_points_hint">没有启用中的打卡点，监控不会产生任何提醒</string>
+    <string name="check_rom">后台自启动（厂商设置）</string>
+    <string name="check_rom_hint">厂商私有开关无法自动检测：请按下方引导手动确认已开启</string>
+
+    <!-- ==================== 定位调试页 ==================== -->
+    <string name="debug_title">定位调试</string>
+    <string name="debug_current_title">当前定位结果</string>
+    <string name="debug_no_location_yet">尚未获取到定位，点击下方按钮开始定位</string>
+    <string name="debug_label_latitude">纬度 lat</string>
+    <string name="debug_label_longitude">经度 lng</string>
+    <string name="debug_label_accuracy">精度</string>
+    <string name="debug_label_source">定位来源</string>
+    <string name="debug_label_trust">可信度</string>
+    <string name="debug_label_time">定位时间</string>
+    <string name="debug_label_address">地址</string>
+    <string name="debug_callback_count">已接收回调 %1$d 次</string>
+
+    <string name="debug_status_idle">未定位</string>
+    <string name="debug_status_single">单次定位中…</string>
+    <string name="debug_status_continuous">连续定位中…</string>
+
+    <string name="debug_config_title">定位参数</string>
+    <string name="debug_interval_label">连续定位间隔：%1$d 秒</string>
+    <string name="debug_timeout_label">单次定位超时：%1$d 秒</string>
+    <string name="debug_mode_label">定位模式：Hight_Accuracy（GPS + 基站 + WiFi 融合）</string>
+
+    <string name="debug_single">单次定位</string>
+    <string name="debug_start_continuous">开始定位</string>
+    <string name="debug_stop">停止定位</string>
+
+    <string name="debug_log_title">回调日志（%1$d）</string>
+    <string name="debug_log_clear">清空</string>
+    <string name="debug_log_empty">暂无回调记录。开始连续定位后会按间隔逐条记录，停止后不再新增。</string>
+    <string name="debug_log_gap">间隔 %1$d ms</string>
+
+    <string name="debug_permission_ok">定位与通知权限已就绪</string>
+    <string name="debug_permission_needed">缺少必要权限</string>
+    <string name="debug_permission_location_desc">精确定位权限（ACCESS_FINE_LOCATION）：获取经纬度所必需</string>
+    <string name="debug_permission_notification_desc">通知权限（POST_NOTIFICATIONS）：进入/离开打卡范围时提醒所必需（Android 13+）</string>
+    <string name="debug_permission_rationale">本应用需要定位权限才能获取当前位置，需要通知权限才能在锁屏时提醒你打卡。位置信息只在本机用于距离比较，不会上传。</string>
+    <string name="debug_permission_denied_once">你刚刚拒绝了权限。可以点击“重新申请”再次授权；若不再弹出系统弹窗，请点击“打开系统设置”手动开启。</string>
+    <string name="debug_permission_denied_forever">权限已被永久拒绝，系统不会再弹出申请窗口。请点击下方按钮进入系统设置，在“权限”中把定位设为“始终允许”、并开启通知。</string>
+    <string name="debug_permission_request">重新申请</string>
+    <string name="debug_permission_open_settings">打开系统设置</string>
+    <string name="debug_permission_open_notification">打开通知设置</string>
+    <string name="debug_error_title">定位失败（错误码 %1$d）</string>
+    <string name="debug_error_raw">原始描述：%1$s</string>
+
+    <!-- ==================== 权限 ==================== -->
+    <string name="permission_title">需要以下权限才能正常提醒</string>
+    <string name="permission_location">定位权限（前后台）</string>
+    <string name="permission_location_foreground">定位权限（前台）</string>
+    <string name="permission_location_background">定位权限（后台/始终允许）</string>
+    <string name="permission_background_short">后台定位权限</string>
+    <string name="permission_notification">通知权限</string>
+    <string name="permission_grant">去授权</string>
+    <string name="permission_granted">已授权</string>
+    <string name="permission_denied_hint">缺少权限时无法在锁屏与后台提醒，请前往系统设置开启“始终允许”定位</string>
+    <string name="permission_background_hint">为了实现后台打卡提醒，请在系统设置中将定位权限改为“始终允许”</string>
+
+    <!-- ==================== 高德隐私合规弹窗 ==================== -->
+    <string name="privacy_title">隐私政策与定位说明</string>
+    <string name="privacy_message">本应用使用「高德地图/定位 SDK」提供地图选点与后台定位能力，用于判断你是否进入或离开已设置的打卡范围并发送提醒。\n\n位置信息仅在设备本地与打卡点坐标做距离比较，不会上传到我们的服务器。继续使用前，请阅读并同意高德开放平台隐私权政策。</string>
+    <string name="privacy_agree">同意并继续</string>
+
+    <!-- ==================== 隐私政策（完整页） ==================== -->
+    <string name="privacy_policy_action">隐私政策</string>
+    <string name="privacy_policy_summary">位置、打卡记录与备份数据的处理方式</string>
+    <string name="privacy_policy_body">《定位打卡》隐私政策
+
+一、我们收集什么
+1. 位置信息：在你授权后，通过高德地图/定位 SDK 获取设备位置，用于判断你是否进入或离开已设置的打卡范围。
+2. 打卡记录：打卡时间、打卡点名称、当时的位置坐标、定位来源与距离，仅保存在你的设备本地。
+3. 应用设置：提醒方式（提示音/震动/全屏提醒）等偏好，保存在设备本地。
+
+二、我们如何使用
+上述信息仅用于：判断进出打卡范围并发出提醒、生成打卡记录与统计、在你主动导出时生成 CSV 或备份文件。
+所有判断都在设备本地完成，我们不会将位置或打卡记录上传到任何服务器。
+
+三、我们如何存储
+数据保存在本应用私有目录的本地数据库中，其他应用无法读取。
+本应用已关闭系统「自动备份」功能（allowBackup=false），因此你的位置与打卡记录不会被同步到云端或转移设备。
+如需更换设备，请在「设置 - 数据管理」中主动导出备份文件，并在新设备上恢复。
+
+四、第三方 SDK
+本应用接入高德地图 SDK、高德定位 SDK 与高德搜索 SDK，用于地图展示、定位与地址解析。
+依据合规要求，只有在你在首次启动时点击同意本政策后，才会初始化定位能力。
+高德 SDK 的隐私政策请参见高德开放平台官网。
+
+五、权限说明
+1. 位置权限（含后台/始终允许）：用于在锁屏与后台判断是否进入打卡范围，是本应用的核心功能。
+2. 通知权限：用于发送进入/离开打卡范围的提醒。
+3. 全屏提醒权限（Android 14+）：用于锁屏时直接弹出打卡确认页。
+4. 开机自启动：用于设备重启后自动恢复后台监控。
+
+六、你的权利
+1. 你可以随时在「设置」中关闭后台监控，或在系统设置中撤销定位权限。
+2. 你可以随时删除单条打卡记录、清空全部记录，或在系统设置中清除应用数据。
+3. 你可以随时导出 CSV 或备份文件，对数据拥有完全控制权。
+
+七、未成年人
+本应用不面向 14 周岁以下未成年人设计，也不会主动收集其个人信息。
+
+八、政策更新
+本政策如有更新，我们会在应用内以弹窗形式提示你重新阅读并确认。</string>
+
+    <!-- ==================== 记录页：视图与操作 ==================== -->
+    <string name="records_view_timeline">时间轴</string>
+    <string name="records_view_calendar">日历</string>
+    <string name="records_view_stats">统计</string>
+    <string name="records_deleted_one">已删除该条记录</string>
+    <string name="records_delete_failed">删除失败：%1$s</string>
+    <string name="records_undo">撤销</string>
+    <string name="records_undo_done">已撤销删除，记录已恢复</string>
+    <string name="records_undo_failed">撤销失败：%1$s</string>
+    <string name="records_cleared">已清空全部打卡记录</string>
+    <string name="records_clear_failed">清空失败：%1$s</string>
+    <string name="records_clear_confirm_title">清空全部记录？</string>
+    <string name="records_clear_confirm_message">当前共 %1$d 条打卡记录。清空后无法撤销，也无法恢复，建议先导出备份。是否继续？</string>
+    <string name="records_clear_confirm_action">清空</string>
+    <string name="records_swipe_hint">向左滑动可删除单条记录</string>
+    <string name="records_delete">删除记录</string>
+
+    <!-- ==================== 记录页：编辑 ==================== -->
+    <string name="records_edit_title">编辑打卡记录</string>
+    <string name="records_edit_time">打卡时间</string>
+    <string name="records_edit_time_hint">用于补卡或纠正错误时间，格式 yyyy-MM-dd HH:mm</string>
+    <string name="records_edit_note">备注</string>
+    <string name="records_edit_note_hint">可选，例如「忘记打卡，事后补记」</string>
+    <string name="records_edit_saved">已保存修改</string>
+    <string name="records_edit_failed">保存失败：%1$s</string>
+    <string name="records_edit_time_invalid">时间格式不正确，请按 yyyy-MM-dd HH:mm 填写</string>
+    <string name="records_note_label">备注</string>
+
+    <!-- ==================== 记录页：时间轴分组 ==================== -->
+    <string name="records_group_count">%1$d 条</string>
+    <string name="records_day_summary">在岗 %1$s · %2$d 次打卡</string>
+
+    <!-- ==================== 记录页：日历 ==================== -->
+    <string name="records_calendar_today">今天</string>
+    <string name="records_calendar_prev">上个月</string>
+    <string name="records_calendar_next">下个月</string>
+    <string name="records_calendar_detail_title">当日明细</string>
+    <string name="records_calendar_detail_empty">这一天没有打卡记录</string>
+    <string name="records_legend_completed">已完成</string>
+    <string name="records_legend_entered_only">仍在范围</string>
+    <string name="records_legend_multi_segment">多次进出</string>
+    <string name="records_legend_no_record">无记录</string>
+    <string name="records_month_label">%1$d 年 %2$d 月</string>
+    <string name="records_weekday_mon">一</string>
+    <string name="records_weekday_tue">二</string>
+    <string name="records_weekday_wed">三</string>
+    <string name="records_weekday_thu">四</string>
+    <string name="records_weekday_fri">五</string>
+    <string name="records_weekday_sat">六</string>
+    <string name="records_weekday_sun">日</string>
+
+    <!-- ==================== 记录页：统计 ==================== -->
+    <string name="records_stats_day">日</string>
+    <string name="records_stats_week">周</string>
+    <string name="records_stats_month">月</string>
+    <string name="records_stats_scope_day">今天</string>
+    <string name="records_stats_scope_week">本周</string>
+    <string name="records_stats_scope_month">本月</string>
+    <string name="records_stats_active_days">打卡天数</string>
+    <string name="records_stats_active_days_value">%1$d 天</string>
+    <string name="records_stats_total_dwell">累计在岗</string>
+    <string name="records_stats_avg_dwell">日均在岗</string>
+    <string name="records_stats_streak">最长连续</string>
+    <string name="records_stats_streak_value">%1$d 天</string>
+    <string name="records_stats_current_streak">当前连续</string>
+    <string name="records_stats_events">进入 %1$d · 离开 %2$d · 手动 %3$d</string>
+    <string name="records_stats_chart_title">每日在岗时长</string>
+    <string name="records_stats_chart_peak">峰值 %1$s</string>
+    <string name="records_stats_chart_empty">这段时间还没有打卡记录</string>
+    <string name="records_stats_unit_minutes">%1$d 分钟</string>
+    <string name="records_duration_hm">%1$d 小时 %2$d 分</string>
+    <string name="records_duration_minutes">%1$d 分钟</string>
+    <string name="records_duration_zero">—</string>
+
+    <!-- ==================== 设置页：数据管理 ==================== -->
+    <string name="settings_data_manage_section">数据管理</string>
+    <string name="settings_data_export_csv">导出打卡记录（CSV）</string>
+    <string name="settings_data_export_csv_desc">用 Excel / WPS 打开查看，含时间、打卡点、坐标、来源与备注</string>
+    <string name="settings_data_backup">导出完整备份（JSON）</string>
+    <string name="settings_data_backup_desc">包含全部打卡点、记录与提醒设置，可在新设备上完整恢复</string>
+    <string name="settings_data_restore">从备份恢复</string>
+    <string name="settings_data_restore_desc">选择之前导出的备份文件，恢复打卡点与记录</string>
+    <string name="settings_data_restore_confirm_title">从备份恢复？</string>
+    <string name="settings_data_restore_confirm_message">恢复将覆盖当前全部数据（打卡点、打卡记录与提醒设置），且无法撤销。建议先导出一次当前备份。是否继续？</string>
+    <string name="settings_data_restore_confirm_action">覆盖并恢复</string>
+    <string name="settings_data_local_note">你的数据只保存在本机，我们不会上传。请定期导出备份，避免卸载应用后数据无法找回。</string>
+    <string name="records_restore_success">恢复完成：%1$d 个打卡点、%2$d 条记录</string>
+    <string name="records_restore_dropped">（已跳过 %1$d 条找不到对应打卡点的记录）</string>
+    <string name="records_restore_invalid">备份文件无法识别：%1$s</string>
+    <string name="records_restore_failed">恢复失败，数据未改动：%1$s</string>
+    <string name="export_failed">导出失败：%1$s</string>
+    <string name="export_success">已导出到所选位置</string>
+
+    <!-- ==================== CSV 表头 ==================== -->
+    <string name="csv_header_time">日期时间</string>
+    <string name="csv_header_point">打卡点</string>
+    <string name="csv_header_source">来源</string>
+    <string name="csv_header_latitude">纬度</string>
+    <string name="csv_header_longitude">经度</string>
+    <string name="csv_header_distance">距离(米)</string>
+    <string name="csv_header_direction">进出方向</string>
+    <string name="csv_header_note">备注</string>
+    <string name="csv_direction_none">—</string>
+</resources>

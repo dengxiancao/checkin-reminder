@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 职责：应用清单，声明权限、前台定位服务、开机恢复广播、高德 Key 占位与应用组件 -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ==================== 保活相关 ==================== -->
+    <!-- 部分唤醒锁：保证锁屏后 CPU 不休眠，定位回调不中断 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--
+      电池优化白名单：用于在设置页引导用户把本应用设为「不优化」。
+      注意：本应用不会静默申请该白名单，只在用户点击引导按钮时拉起系统弹窗。
+    -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <!--
+      精确闹钟：仅用于「看活」定时任务（周期性检查前台服务是否存活）。
+      自 Android 12 起该权限默认不授予，未授予时会自动降级为非精确闹钟，
+      不影响主功能；声明在此以便在已授权的设备上获得更准时的自恢复。
+    -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <!-- ==================== 定位权限 ==================== -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Android 10+ 后台定位：需先获得前台定位，再引导用户去设置页授予“始终允许” -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <!-- 用于读取网络/WiFi 辅助定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- ==================== 前台服务 ==================== -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Android 14 (API 34) 起必须声明具体的前台服务类型权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- 高德定位 SDK 在部分机型上使用该权限提升后台定位成功率 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+    <!-- ==================== 通知（Android 13+ 需运行时申请） ==================== -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- ==================== 开机自启恢复围栏 ==================== -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- ==================== 全屏提醒（B3） ==================== -->
+    <!--
+      全屏提醒：进入/离开打卡范围时，锁屏上直接弹出打卡确认页（setFullScreenIntent）。
+      自 Android 14 (API 34) 起，该权限仅对闹钟/通话类应用默认授予，其余应用默认被撤销，
+      未持有时系统会把全屏 Intent **静默降级为普通横幅通知**。
+      因此除声明外，还需在运行时用 NotificationManager.canUseFullScreenIntent() 检测并引导用户授权
+      （见 SelfCheckRunner / SettingsScreen）。
+    -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+
+    <!-- 地图选点需要 OpenGL ES 2.0 -->
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:name=".CheckinApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CheckinReminder"
+        tools:targetApi="34">
+
+        <!-- ==================== 高德 Key（从 local.properties 注入，禁止硬编码） ==================== -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="${MAP_KEY}" />
+
+        <!-- 说明：高德地图 SDK 的组件由 AAR 自带清单合并进来，无需重复声明。 -->
+
+        <!-- 高德定位服务：官方要求每个 App 显式声明（com.amap.api:location 的 Maven 产物为
+             纯 jar，不自带清单，故必须在此声明）。target>=28 且需要后台定位时，
+             必须带上 foregroundServiceType="location"，否则 Android 10+ 上后台定位会被系统拦截。 -->
+        <service
+            android:name="com.amap.api.location.APSService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- ==================== 主界面 ==================== -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.CheckinReminder">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ==================== 新增/编辑打卡点（内嵌高德地图） ==================== -->
+        <activity
+            android:name=".ui.point.AddEditPointActivity"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:parentActivityName=".ui.MainActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.CheckinReminder.MapPicker" />
+
+        <!-- ==================== 打卡确认页（由高优先级通知点击进入） ==================== -->
+        <!-- 锁屏显示通过 Activity#setShowWhenLocked / setTurnScreenOn 在代码中开启
+             （android:showOnLockScreen 并非公开属性，写了也不会生效） -->
+        <activity
+            android:name=".ui.confirm.CheckinConfirmActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:excludeFromRecents="true"
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/Theme.CheckinReminder" />
+
+        <!-- ==================== 打卡监控前台服务（START_STICKY 常驻，锁屏可用） ==================== -->
+        <service
+            android:name=".service.CheckinForegroundService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="location"
+            android:stopWithTask="false" />
+
+        <!-- ==================== 服务看活（被 ROM 冻结后的自恢复） ==================== -->
+        <receiver
+            android:name=".service.WatchdogReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- ==================== 开机广播：重启后自动恢复围栏 ==================== -->
+        <!--
+          exported 必须为 false：该 Receiver 只接收系统广播。
+          按 Android 官方语义，exported="false" 的组件**仍能**接收系统广播与同 UID 广播，
+          而 exported="true" 会让任意第三方应用发送同名 action 的广播来触发本应用
+          读取数据库并 startForegroundService，可被用于耗电骚扰 / 拒绝服务。
+        -->
+        <receiver
+            android:name=".geofence.BootCompletedReceiver"
+            android:enabled="true"
+            android:exported="false"
+            android:directBootAware="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+                <!-- 应用被更新/重启后恢复 -->
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

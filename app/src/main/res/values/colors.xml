@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 职责：颜色资源，供 XML 主题与图标引用 -->
+<resources>
+    <color name="app_background">#FFFBFE</color>
+    <color name="app_primary">#1B6C3A</color>
+    <color name="app_primary_dark">#0F4526</color>
+    <color name="app_secondary">#4F6354</color>
+    <color name="ic_launcher_background">#1B6C3A</color>
+    <color name="ic_launcher_foreground">#FFFFFF</color>
+</resources>
