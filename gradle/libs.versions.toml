@@ -1,0 +1,74 @@
+# 职责：Gradle 版本目录，集中管理依赖坐标与版本号（便于统一升级）
+[versions]
+agp = "8.2.2"
+kotlin = "1.9.22"
+ksp = "1.9.22-1.0.17"
+
+# compileSdk 33：本机 SDK 仅安装 android-33；targetSdk 34 按需求
+compileSdk = "33"
+targetSdk = "34"
+minSdk = "26"
+buildTools = "34.0.0"
+
+coreKtx = "1.10.1"
+lifecycle = "2.6.2"
+activityCompose = "1.8.2"
+composeBom = "2024.02.01"
+composeCompiler = "1.5.8"
+room = "2.6.1"
+coroutines = "1.7.3"
+datastore = "1.0.0"
+
+amapLocation = "6.4.5"
+# 地图 SDK 使用 map3d（仅含 com.amap.api.maps），与 location 完全无类重叠；
+# 注意：不要换成 3dmap，3dmap 内置了整套 location 类，会与 location 依赖冲突（Duplicate class）
+amapMap = "6.8.0"
+amapSearch = "9.7.0"
+
+junit = "4.13.2"
+
+[libraries]
+# AndroidX 基础
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.6.1" }
+# XML 主题需要 Material3 父样式（Theme.Material3.*），Compose 的 material3 不提供该 XML 资源。
+# 固定 1.9.0：1.11.0 起引入 res/values-v34 且引用 android:color/system_* 资源，
+# 在 compileSdk 33 下会 AAPT 链接失败。
+google-material = { group = "com.google.android.material", name = "material", version = "1.9.0" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "lifecycle" }
+
+# Compose（由 BOM 统一版本）
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+
+# Room
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+# 协程 / 数据存储
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+
+# 高德 SDK（定位底座 + 地图选点 + 逆地理搜索）
+amap-location = { group = "com.amap.api", name = "location", version.ref = "amapLocation" }
+amap-map3d = { group = "com.amap.api", name = "map3d", version.ref = "amapMap" }
+amap-search = { group = "com.amap.api", name = "search", version.ref = "amapSearch" }
+
+# 测试（仅 JVM 单元测试；工程无 androidTest 源码，故不声明 instrumentation 依赖）
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

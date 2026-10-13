@@ -1,0 +1,20 @@
+# 行尾规范化：仓库内统一 LF，避免跨平台「整个文件被改动」的噪音
+* text=auto eol=lf
+
+# Windows 专用脚本保留 CRLF（cmd.exe / PowerShell 的传统要求）
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Gradle Wrapper 的 shell 脚本必须 LF，否则 Linux / macOS 下报 bad interpreter
+gradlew text eol=lf
+
+# 二进制文件不做任何行尾转换
+*.jar binary
+*.so binary
+*.apk binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.jks binary
+*.keystore binary

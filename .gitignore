@@ -1,0 +1,48 @@
+# 职责：Git 忽略规则，重点忽略 local.properties（含高德 Key）与构建产物
+
+# 高德地图/定位 SDK Key 存放处，绝对不能提交
+local.properties
+
+# APK 签名密钥与口令，绝对不能提交
+keystore.properties
+*.jks
+*.keystore
+
+# Gradle 构建产物
+.gradle/
+build/
+app/build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 日志与临时文件
+*.log
+*.hprof
+
+# 抓日志脚本的输出目录（tools/logs/）
+logs/
+
+# 本地调试工作目录：截图、界面 dump、adb 日志，含位置等隐私信息
+.tmp/
+
+# 工具工作记忆目录（本地专用，非项目源码）
+.workbuddy/
+
+# 根目录下的历史构建产物：仓库只在 apk/ 保留对外分发的正式包
+/*.apk
+
+# 高德定位 SDK 二进制：受第三方许可约束，不入库，需自行下载（见 app/libs/README.md）
+/app/libs/*.jar
+/app/src/main/jniLibs/**/*.so
