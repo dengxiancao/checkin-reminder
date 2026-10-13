@@ -6,6 +6,8 @@
 - **包名**：`com.example.checkin`
 - **版本**：1.7.2（versionCode 5）
 - **兼容**：Android 8.0（API 26）～ Android 14（targetSdk 34）
+- **仓库**：<https://github.com/dengxiancao/checkin-reminder>
+- **可直接安装的包**：[`apk/定位打卡-v1.7.2-release.apk`](apk/)
 
 ---
 
@@ -47,6 +49,15 @@
 ---
 
 ## 三、快速开始
+
+### 0. 获取代码
+
+```bash
+git clone https://github.com/dengxiancao/checkin-reminder.git
+cd checkin-reminder
+```
+
+> 只想试用可直接下载 [`apk/定位打卡-v1.7.2-release.apk`](apk/) 安装，无需编译。
 
 ### 1. 准备开发环境
 
@@ -209,6 +220,7 @@ App 内提供 **设置 → 后台权限设置引导**，含图文步骤与直达
 checkin-reminder/
 ├── README.md                    # 本文件
 ├── .gitignore                   # 忽略签名 / Key / 构建产物 / 高德 SDK 二进制
+├── .gitattributes               # 统一行尾（gradlew 保持 LF，Windows 脚本保持 CRLF）
 ├── build.gradle.kts             # 根构建脚本
 ├── settings.gradle.kts
 ├── gradle.properties
@@ -388,4 +400,6 @@ app/src/main/java/com/example/checkin/
 - **数据留在本机**：打卡点与记录（坐标、时间、备注）仅存于设备本地 Room 数据库，
   App 不做任何数据上传，不含统计埋点；详见 App 内「设置 → 隐私政策」。
 - **正式分发前**：请更换为自有的强口令密钥库，并在高德控制台登记其 SHA1（步骤见 4.2 节）。
+- **文档已脱敏**：`docs/` 下的审计报告与修复说明中，凡涉及签名口令的位置均已替换为
+  `<已脱敏>` 占位符；证书 SHA1 属公开指纹（可从任意已发布 APK 提取），予以保留以便技术核对。
 
